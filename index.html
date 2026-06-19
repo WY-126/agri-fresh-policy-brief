@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农业生鲜政策与商业观察简报</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #fbfcf8;
+      --panel: #ffffff;
+      --accent: #237a57;
+      --accent-2: #b45309;
+      --accent-3: #2563eb;
+      --soft: #eef7f1;
+      --soft-2: #fff7ed;
+      --shadow: 0 14px 36px rgba(31, 41, 51, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(238, 247, 241, 0.75), rgba(251, 252, 248, 0.9) 34rem),
+        var(--paper);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      line-height: 1.72;
+    }
+
+    a {
+      color: var(--accent-3);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      overflow: auto;
+    }
+
+    .brand {
+      margin-bottom: 26px;
+    }
+
+    .brand .label {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .brand h1 {
+      margin: 8px 0 10px;
+      font-size: 24px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav {
+      display: grid;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    nav a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 6px;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: var(--soft);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .meta-box {
+      margin-top: 24px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    main {
+      min-width: 0;
+      padding: 32px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: -32px -32px 28px;
+      padding: 14px 32px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 252, 248, 0.86);
+      backdrop-filter: blur(14px);
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    button {
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: #263238;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    button:hover {
+      box-shadow: 0 4px 14px rgba(31, 41, 51, 0.12);
+    }
+
+    article {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    article:focus {
+      outline: 3px solid rgba(35, 122, 87, 0.18);
+    }
+
+    .doc-head {
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .doc-head h2 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.24;
+      letter-spacing: 0;
+    }
+
+    .doc-head .sub {
+      max-width: 760px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    section {
+      padding: 20px 0;
+      border-top: 1px solid #eef2f6;
+    }
+
+    section:first-of-type {
+      border-top: 0;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin: 7px 0;
+    }
+
+    .callout {
+      margin: 16px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      background: var(--soft);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .signal {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 4px;
+    }
+
+    .signal div {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-2);
+    }
+
+    .source-list {
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: var(--soft-2);
+    }
+
+    [contenteditable="true"] {
+      caret-color: var(--accent);
+    }
+
+    @media (max-width: 860px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      main {
+        padding: 18px;
+      }
+
+      .toolbar {
+        position: static;
+        margin: -18px -18px 18px;
+        padding: 12px 18px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .actions {
+        justify-content: flex-start;
+      }
+
+      article {
+        padding: 24px 18px;
+      }
+
+      .doc-head h2 {
+        font-size: 28px;
+      }
+
+      .signal {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      aside,
+      .toolbar {
+        display: none;
+      }
+
+      .shell {
+        display: block;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      article {
+        border: 0;
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+      }
+
+      a {
+        color: #111827;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">
+        <div class="label">行业简报</div>
+        <h1>农业生鲜政策与商业观察</h1>
+        <p>围绕中央一号文件、官方公开信息和商业观察线索，沉淀可持续更新的工作稿。</p>
+      </div>
+      <nav aria-label="页面目录">
+        <a href="#summary">今日总判断</a>
+        <a href="#verify">真实性规则</a>
+        <a href="#policy">政策主线</a>
+        <a href="#production">农业生产端</a>
+        <a href="#processing">产地加工</a>
+        <a href="#coldchain">冷链流通</a>
+        <a href="#retail">零售与消费</a>
+        <a href="#safety">质量安全</a>
+        <a href="#business">商业观察</a>
+        <a href="#actions">行动建议</a>
+        <a href="#sources">来源</a>
+      </nav>
+      <div class="meta-box">
+        <strong>更新日期</strong><br>
+        2026年6月18日<br><br>
+        <strong>关注行业</strong><br>
+        农业、生鲜、冷链、零售、供应链
+      </div>
+    </aside>
+
+    <main>
+      <div class="toolbar">
+        <div class="status" id="status">已加载本地工作稿</div>
+        <div class="actions">
+          <button type="button" class="primary" id="saveBtn">保存</button>
+          <button type="button" id="exportBtn">导出文本</button>
+          <button type="button" id="printBtn">打印</button>
+          <button type="button" id="resetBtn">恢复初稿</button>
+        </div>
+      </div>
+
+      <article id="brief" contenteditable="true" spellcheck="false">
+        <div class="doc-head">
+          <p class="eyebrow">2026年1月1日 - 2026年6月18日</p>
+          <h2>中央一号文件视角下的农业生鲜行业简报</h2>
+          <p class="sub">这份工作稿以农业和生鲜行业为中心，把中央政策、官方公开文件、新闻联播和可核验商业观察信息转化为经营判断。</p>
+        </div>
+
+        <section id="summary">
+          <h3>一、今日总判断</h3>
+          <p>中央一号文件对农业生鲜行业的核心信号，不是“农业会被补贴”这么简单，而是国家要把农业从单点生产推向稳定供给、标准化生产、产地加工、冷链流通、县域商业、质量安全、品牌溢价的一整套体系。</p>
+          <div class="callout">
+            <strong>对农业生鲜企业的关键含义：</strong>机会不只在地里，也在产地仓、分级包装、冷链、批发市场改造、社区渠道、即时零售、食品安全追溯这些环节。
+          </div>
+          <div class="signal">
+            <div><strong>底层逻辑</strong>保供稳价仍是政策底盘。</div>
+            <div><strong>利润来源</strong>从低价采购转向分级、降损和履约效率。</div>
+            <div><strong>竞争门槛</strong>品质稳定、来源可信、渠道稳定会更重要。</div>
+          </div>
+        </section>
+
+        <section id="verify">
+          <h3>二、真实性规则：只采用官方与可核验信息</h3>
+          <p>后续更新会扩大新闻和政策来源，但真实性优先级高于信息数量。所有结论必须能对应到公开来源，无法核验的传闻、社媒转述、小道消息和来源不清的截图，不写入正文。</p>
+          <div class="callout">
+            <strong>采用原则：</strong>优先使用中央和地方政府网站、官方媒体、主管部门公开文件；商业观察类内容只作为视角补充，必须有原文、公开转载或来源清楚的摘要。
+          </div>
+          <ul>
+            <li><strong>中央官方渠道：</strong>中国政府网、新华社、人民日报、央视网、央视新闻、央视频。</li>
+            <li><strong>主管部门：</strong>农业农村部、商务部、国家发展改革委、市场监管总局、海关总署、国家统计局等。</li>
+            <li><strong>地方公开文件：</strong>浙江省人民政府网、浙江省农业农村厅、浙江省商务厅、浙江省市场监管局等。</li>
+            <li><strong>商业补充：</strong>公众号“商业观察”及其公开可核验转载，重点看零售、消费、供应链和商业模式变化。</li>
+          </ul>
+        </section>
+
+        <section id="policy">
+          <h3>三、政策主线：保供仍是底层逻辑</h3>
+          <p>中央一号文件延续的第一层逻辑是粮食安全和重要农产品稳定供给。央视2026年6月17日《新闻联播》提到全国夏粮丰收成定局，这说明今年政策叙事里，“稳产保供”仍是第一优先级。</p>
+          <p><strong>行业影响：</strong>粮食、大宗农产品价格大概率以稳为主；但蔬菜、水果、肉蛋、水产这类生鲜，仍会因为天气、区域供需、物流和损耗出现短期波动。</p>
+          <p><strong>你应关注：</strong>不要只看全国总量，要看区域供给。高温、暴雨、台风、寒潮，会直接影响短周期叶菜、水果、水产和禽蛋价格。</p>
+        </section>
+
+        <section id="production">
+          <h3>四、农业生产端：从“多种”走向“会种、稳种、标准种”</h3>
+          <p>政策会继续支持高标准农田、农业科技、种业、农机、设施农业和社会化服务。对生鲜行业尤其重要的是，未来好基地的价值会提高。</p>
+          <p><strong>行业解读：</strong>过去很多生鲜企业靠批发市场拿货，价格便宜就买。但如果要做稳定品质、稳定交付、稳定毛利，就必须往上游走，绑定基地、合作社、家庭农场或区域龙头。</p>
+          <ul>
+            <li>设施蔬菜：更适合做稳定供应和错峰上市。</li>
+            <li>精品水果：更依赖品种、采后处理和品牌包装。</li>
+            <li>标准化养殖：适合餐饮、商超和平台渠道的长期采购。</li>
+            <li>工厂化水产：对温控、密度、病害控制和履约稳定性要求高。</li>
+          </ul>
+        </section>
+
+        <section id="processing">
+          <h3>五、产地加工：生鲜利润的关键不在“原货”，在“分级”</h3>
+          <p>中央一号文件长期强调乡村产业、农产品加工、农产品上行。对生鲜来说，最实际的机会是把原始农产品变成更适合渠道销售的商品。</p>
+          <p><strong>行业解读：</strong>同一批苹果、番茄、鸡蛋、鱼虾，如果不分级，只能按平均价格卖；如果按大小、品相、用途、渠道分级，就可以拆成商超货、电商货、团购货、餐饮货、加工货，利润结构完全不同。</p>
+          <ul>
+            <li>产地分选：提升不同渠道的定价能力。</li>
+            <li>预冷与包装：降低损耗，延长销售窗口。</li>
+            <li>净菜、鲜切和初加工：适配餐饮、商超和即时零售。</li>
+            <li>损耗品再加工：把非标品转化为果切、冻品、酱料或加工原料。</li>
+          </ul>
+        </section>
+
+        <section id="coldchain">
+          <h3>六、冷链流通：政策利好会落在“降损耗”上</h3>
+          <p>生鲜行业最硬的成本不是采购价，而是损耗。政策持续支持县域商业、物流体系、农产品上行，本质上是在补齐产地到消费端之间的断点。</p>
+          <p><strong>行业解读：</strong>冷链不是单纯买冷库，而是“预冷 + 产地仓 + 干线 + 城配 + 门店/前置仓”的协同。谁能把损耗率降下来，谁就能在价格战里多一层安全垫。</p>
+          <ul>
+            <li>产地仓：适合把分级、预冷、包装前置。</li>
+            <li>县域冷链节点：适合做农产品上行和区域集配。</li>
+            <li>农批市场数字化：有助于提升价格、库存和流向透明度。</li>
+            <li>冷链城配：决定即时零售和门店补货体验。</li>
+          </ul>
+        </section>
+
+        <section id="retail">
+          <h3>七、零售与消费：低价竞争会继续，但供应链能力更重要</h3>
+          <p>生鲜零售、电商、社区团购、即时零售今年仍会围绕低价和效率竞争。但政策端对农产品质量安全、平台规范、县域商业、消费提振的关注，会让单纯低价模式越来越难。</p>
+          <p><strong>行业解读：</strong>未来能活得更稳的，不是最会烧钱的平台，而是能同时做到货源稳定、履约稳定、损耗可控、品质可信的企业。</p>
+          <ul>
+            <li>商超生鲜升级：更看重品质、陈列、加工和会员复购。</li>
+            <li>社区团购：更依赖爆品、低损耗和履约密度。</li>
+            <li>即时零售：高频刚需品类更有价值，但履约成本要算清。</li>
+            <li>县域下沉渠道：有长期空间，但客单价和配送半径是约束。</li>
+          </ul>
+        </section>
+
+        <section id="safety">
+          <h3>八、质量安全：会从加分项变成准入门槛</h3>
+          <p>农产品质量安全监管会持续加强。对生鲜行业，这不是宣传概念，而是实际经营门槛。</p>
+          <p><strong>行业解读：</strong>一旦食品安全出问题，生鲜企业损失的不只是单品，而是渠道信任。尤其是水果农残、蔬菜农残、肉类检疫、水产药残、冷链温控，都会越来越敏感。</p>
+          <ul>
+            <li>供应商准入：建立稳定的资质、检测和履约记录。</li>
+            <li>批次追溯：每批货能追到产地、供应商和流向。</li>
+            <li>检测记录：重点品类保留农残、药残、检疫和温控证据。</li>
+            <li>召回机制：出现问题时能快速定位和处理。</li>
+          </ul>
+        </section>
+
+        <section id="business">
+          <h3>九、商业观察：后续重点盯三类信号</h3>
+          <p>公众号“商业观察”如果后续抓到内容，建议按以下三类判断是否对农业生鲜有价值。</p>
+          <ul>
+            <li><strong>零售平台变化：</strong>商超、电商、即时零售、社区团购是否加码生鲜。</li>
+            <li><strong>供应链模式变化：</strong>产地直采、仓配一体、农批市场改造、品牌农产品出圈。</li>
+            <li><strong>消费变化：</strong>消费者更看重低价、品质、健康、安全，还是便利性。</li>
+          </ul>
+          <p><strong>当前说明：</strong>本版没有稳定抓到“商业观察”公众号公开原文，因此不把未经核验的内容写入正文。后续每日自动化会继续尝试抓公众号原文或公开转载，并标注来源；如果只能看到搜索摘要，会明确写成“摘要线索”，不会当成已确认事实。</p>
+        </section>
+
+        <section id="actions">
+          <h3>十、给你的行动建议</h3>
+          <ul>
+            <li>优先找能长期合作的产地，而不是每天找最低价。</li>
+            <li>把分级包装和损耗管理当成利润中心。</li>
+            <li>重点关注天气和区域供需，尤其是果蔬、水产、禽蛋。</li>
+            <li>冷链投入要围绕损耗率算账，不要只看设备规模。</li>
+            <li>做生鲜品牌时，先做可信供应链，再做传播。</li>
+            <li>县域市场值得长期看，但要注意履约成本和客单价是否匹配。</li>
+          </ul>
+        </section>
+
+        <section id="sources">
+          <h3>十一、来源与后续更新</h3>
+          <div class="source-list">
+            <p><strong>已核验公开来源：</strong></p>
+            <ul>
+              <li><a href="https://tv.cctv.com/2026/06/17/VIDEP8FUsYtJwvCJSds0y6a0260617.shtml">央视网：全国夏粮丰收成定局</a></li>
+              <li><a href="https://tv.cctv.com/2026/06/17/VIDEREzuma1Yr9jB0TcbsSlJ260617.shtml">央视网：国内联播快讯</a></li>
+            </ul>
+            <p><strong>后续自动化信息源：</strong>央视频《新闻联播》、央视网、央视新闻、人民日报、新华社、中国政府网、农业农村部、商务部、国家发展改革委、市场监管总局、海关总署、国家统计局、浙江省人民政府网、浙江省农业农村厅、浙江省商务厅、浙江省市场监管局，以及公众号“商业观察”公开原文或同源转载。</p>
+            <p><strong>排除内容：</strong>小道消息、传闻、未证实社媒消息、无来源截图、无法核验的转述，不作为事实写入。</p>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    const brief = document.getElementById("brief");
+    const status = document.getElementById("status");
+    const saveBtn = document.getElementById("saveBtn");
+    const exportBtn = document.getElementById("exportBtn");
+    const printBtn = document.getElementById("printBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const storageKey = "agri-fresh-policy-brief-v2";
+    const initialHtml = brief.innerHTML;
+    let saveTimer = null;
+
+    function setStatus(text) {
+      status.textContent = text;
+    }
+
+    function saveDraft(manual = false) {
+      localStorage.setItem(storageKey, brief.innerHTML);
+      const now = new Date();
+      const time = now.toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      setStatus(manual ? `已保存 ${time}` : `已自动保存 ${time}`);
+    }
+
+    function scheduleSave() {
+      setStatus("正在编辑...");
+      window.clearTimeout(saveTimer);
+      saveTimer = window.setTimeout(() => saveDraft(false), 700);
+    }
+
+    function exportText() {
+      const blob = new Blob([brief.innerText.trim()], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "农业生鲜政策与商业观察简报.txt";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setStatus("已导出文本");
+    }
+
+    const saved = localStorage.getItem(storageKey);
+    if (saved) {
+      brief.innerHTML = saved;
+      setStatus("已加载上次保存的版本");
+    }
+
+    brief.addEventListener("input", scheduleSave);
+    saveBtn.addEventListener("click", () => saveDraft(true));
+    exportBtn.addEventListener("click", exportText);
+    printBtn.addEventListener("click", () => window.print());
+    resetBtn.addEventListener("click", () => {
+      if (!window.confirm("恢复初稿会覆盖当前浏览器中的修改，确定继续吗？")) return;
+      brief.innerHTML = initialHtml;
+      saveDraft(true);
+      setStatus("已恢复初稿");
+    });
+  </script>
+</body>
+</html>
